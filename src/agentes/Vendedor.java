@@ -13,7 +13,8 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
-public class Vendedor extends Agent {
+public class Vendedor extends Agent 
+{
 	// guardar os livros a serem vendidos
 	private Hashtable catalogo;
 	// permite adicionar livros ao catalogo
