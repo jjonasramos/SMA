@@ -1,9 +1,9 @@
-package agentes.restaurante;
+package restaurante.agentes;
 
 import jade.core.Agent;
 
 /**
- * Classe só para padronizar os prints do setup e takeDown para funcionários do restaurante
+ * Classe sï¿½ para padronizar os prints do setup e takeDown para funcionï¿½rios do restaurante
  * 
  * @author Junior
  *

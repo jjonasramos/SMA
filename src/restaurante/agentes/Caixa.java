@@ -1,8 +1,8 @@
-package agentes.restaurante;
+package restaurante.agentes;
 
 import jade.core.Agent;
 
-public class Cozinheiro extends Funcionario
+public class Caixa extends Funcionario
 {
 	@Override
 	protected void setup()

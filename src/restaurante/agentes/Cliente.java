@@ -1,4 +1,4 @@
-package agentes.restaurante;
+package restaurante.agentes;
 
 import jade.core.Agent;
 
