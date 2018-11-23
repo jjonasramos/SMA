@@ -1,7 +1,13 @@
 package restaurante.cardapio;
 
-public class ItemCardapio 
+import java.io.Serializable;
+
+public class ItemCardapio implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3689332462065050463L;
 	private String nome;
 	private double preco;
 	
@@ -22,5 +28,16 @@ public class ItemCardapio
 	}
 	public void setPreco(double preco) {
 		this.preco = preco;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ItemCardapio [nome=");
+		builder.append(nome);
+		builder.append(", preco=");
+		builder.append(preco);
+		builder.append("]");
+		return builder.toString();
 	}	
 }

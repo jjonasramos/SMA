@@ -1,28 +1,44 @@
 package restaurante.cardapio;
 
-import jade.core.Agent;
+import java.io.Serializable;
 
-public class Pedido 
+import jade.core.AID;
+import jade.core.Agent;
+import restaurante.agentes.cliente.Cliente;
+
+public class Pedido implements Serializable
 {
-	private Agent agente;
+	/**
+	 * Serializable
+	 */
+	private static final long serialVersionUID = 3395022724889221398L;
+	
+	private AID cliente;
 	private ItemCardapio item;
 	
-	public Pedido(Agent agente, ItemCardapio item) {
+	public Pedido(AID cliente, ItemCardapio item) {
 		super();
-		this.agente = agente;
+		this.cliente = cliente;
 		this.item = item;
 	}
-	
-	public Agent getAgente() {
-		return agente;
+
+	public AID getCliente() {
+		return cliente;
 	}
-	public void setAgente(Agent agente) {
-		this.agente = agente;
+
+	public void setCliente(AID cliente) {
+		this.cliente = cliente;
 	}
+
 	public ItemCardapio getItem() {
 		return item;
 	}
+
 	public void setItem(ItemCardapio item) {
 		this.item = item;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

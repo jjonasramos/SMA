@@ -7,18 +7,17 @@ import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.UnreadableException;
 import restaurante.Const;
+import restaurante.cardapio.Pedido;
 
 class ComportamentoGarcom extends Behaviour 
 {
 	private static final int ESPERANDO = 0;
 	
 	private static final int ATENDER_CLIENTE = 1;
-	private static final int ANOTANDO_PEDIDO = 2;
-	private static final int LEVANDO_PEDIDO_COZINHA = 3;
 	
-	private static final int RECEBENDO_PRATO = 4;
-	private static final int ENTREGANDO_PRATO_CLIENTE = 5;
+	private static final int ENTREGANDO_PRATO_CLIENTE = 2;
 	
 	private int estado = ESPERANDO;
 	
@@ -58,11 +57,17 @@ class ComportamentoGarcom extends Behaviour
 			ACLMessage msg = myAgent.receive();
 			
 			if(msg != null)
-				switch(msg.getPerformative())
+				switch(msg.getConversationId())
 				{
-				case ACLMessage.CFP:
+				// Cliente chamando
+				case Const.CHAMAR_GARCOM:
 					responderChamadoCliente(msg);
 					estado = ATENDER_CLIENTE;
+					break;
+					
+				// Cozinha chamando
+				case Const.CHAMAR_GARCOM_COZINHA:
+					estado = ENTREGANDO_PRATO_CLIENTE;
 					break;
 				}
 			else
@@ -71,19 +76,47 @@ class ComportamentoGarcom extends Behaviour
 			break;
 			
 		case ATENDER_CLIENTE:
+			ACLMessage pedido = myAgent.receive();
+			
+			if(pedido != null)
+			{
+				System.out.println(myAgent.getLocalName() + ": Só um momento...");
+				
+				try {
+					Pedido p = (Pedido) pedido.getContentObject();
+					colocarPedidoNaCozinha(p);
+				} catch (UnreadableException e) {
+					e.printStackTrace();
+				}
+				
+				estado = ESPERANDO;
+			}
+			else
+				block();
+			
+			break;
+			
+		case ENTREGANDO_PRATO_CLIENTE:
 			break;
 		}
 	}
 	
 	private void responderChamadoCliente(ACLMessage msg)
 	{
-		System.out.println("Walt msg " + msg.getSender().getLocalName());
-		
 		ACLMessage reply = msg.createReply();
 		reply.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
 		myAgent.send(reply);
 		
 		System.out.println(myAgent.getLocalName() + ": Olá " + msg.getSender().getLocalName() + ". O que vai querer?");
+	}
+	
+	private void responderPedidoCliente(ACLMessage msg)
+	{
+		// TODO
+	}
+	
+	private void colocarPedidoNaCozinha(Pedido p) {
+		// TODO Cozinha
 	}
 
 	@Override
