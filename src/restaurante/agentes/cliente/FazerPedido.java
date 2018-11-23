@@ -19,6 +19,7 @@ public class FazerPedido extends Behaviour
 	
 	private final int FAZER_PEDIDO = 0;
 	private final int RECEBER_PEDIDO = 1;
+	private final int RECEBEU_PEDIDO = 2;
 	
 	private int estado = FAZER_PEDIDO;
 	
@@ -72,6 +73,8 @@ public class FazerPedido extends Behaviour
 				}
 				
 				c.getComportamentos().addSubBehaviour(new Comer(myAgent, p.getItem()));
+				
+				estado = RECEBEU_PEDIDO;
 			}
 			else
 				block();
@@ -83,8 +86,7 @@ public class FazerPedido extends Behaviour
 
 	@Override
 	public boolean done() {
-		// TODO Auto-generated method stub
-		return false;
+		return estado == RECEBEU_PEDIDO;
 	}
 
 }

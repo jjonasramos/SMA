@@ -20,6 +20,7 @@ public class Main
 		Profile profile = new ProfileImpl();
 		profile.setParameter(Profile.MAIN_HOST, "localhost");
 		profile.setParameter(Profile.GUI, "true");
+		profile.setParameter(Profile.AGENTS, "true");
 		
 		containerController = runtime.createMainContainer(profile);
 		

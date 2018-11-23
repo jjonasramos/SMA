@@ -1,5 +1,8 @@
 package restaurante.agentes.garcom;
 
+import java.io.IOException;
+
+import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.domain.DFService;
@@ -9,7 +12,9 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 import restaurante.Const;
+import restaurante.agentes.cliente.Cliente;
 import restaurante.agentes.cozinheiro.Cozinha;
+import restaurante.cardapio.ItemCardapio;
 import restaurante.cardapio.Pedido;
 
 class ComportamentoGarcom extends Behaviour 
@@ -68,7 +73,15 @@ class ComportamentoGarcom extends Behaviour
 					
 				// Cozinha chamando
 				case Const.CHAMAR_GARCOM_COZINHA:
-					responderPedidoCliente(msg);
+					try {
+						responderPedidoCliente(msg);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (UnreadableException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					estado = ENTREGANDO_PRATO_CLIENTE;
 					break;
 				}
@@ -113,9 +126,21 @@ class ComportamentoGarcom extends Behaviour
 		System.out.println(myAgent.getLocalName() + ": Olá " + msg.getSender().getLocalName() + ". O que vai querer?");
 	}
 	
-	private void responderPedidoCliente(ACLMessage msg)
+	private void responderPedidoCliente(ACLMessage msg) throws IOException, UnreadableException
 	{
-		// TODO
+		ACLMessage entrega = new ACLMessage(ACLMessage.PROPOSE);
+		
+		Pedido pedido = (Pedido) msg.getContentObject();
+		
+		AID cliente = pedido.getCliente();
+		ItemCardapio i = pedido.getItem();
+		
+		entrega.addReceiver(cliente);
+		entrega.setContentObject(pedido);
+		myAgent.send(entrega);
+		
+		System.out.println();
+		System.out.println(myAgent.getLocalName() + ": Aqui está seu " + i.getNome() + ", " + cliente.getLocalName() + "...");
 	}
 	
 	private void colocarPedidoNaCozinha(Pedido p) {
