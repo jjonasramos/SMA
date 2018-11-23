@@ -1,6 +1,7 @@
-package restaurante.agentes;
+package restaurante.agentes.cozinheiro;
 
 import jade.core.Agent;
+import restaurante.agentes.Funcionario;
 
 public class Cozinheiro extends Funcionario
 {

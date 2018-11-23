@@ -4,10 +4,10 @@ import jade.core.ProfileImpl;
 import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
-import restaurante.agentes.Caixa;
-import restaurante.agentes.Cliente;
-import restaurante.agentes.Cozinheiro;
-import restaurante.agentes.Garcom;
+import restaurante.agentes.caixa.Caixa;
+import restaurante.agentes.cliente.Cliente;
+import restaurante.agentes.cozinheiro.Cozinheiro;
+import restaurante.agentes.garcom.Garcom;
 
 public class Main 
 {
@@ -37,7 +37,7 @@ public class Main
 	{
 		AgentController leticia    = criarEIniciarAgente("Leticia"         , Cliente.class.getName());
 		AgentController garcom     = criarEIniciarAgente("Walter"          , Garcom.class.getName());
-		AgentController cozinheiro = criarEIniciarAgente("Patr�cia"        , Cozinheiro.class.getName());
+		AgentController cozinheiro = criarEIniciarAgente("Patricia"        , Cozinheiro.class.getName());
 		AgentController caixa      = criarEIniciarAgente("Cristiano he-man", Caixa.class.getName());
 	}
 	
