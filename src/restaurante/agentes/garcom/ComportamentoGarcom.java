@@ -9,6 +9,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 import restaurante.Const;
+import restaurante.agentes.cozinheiro.Cozinha;
 import restaurante.cardapio.Pedido;
 
 class ComportamentoGarcom extends Behaviour 
@@ -67,6 +68,7 @@ class ComportamentoGarcom extends Behaviour
 					
 				// Cozinha chamando
 				case Const.CHAMAR_GARCOM_COZINHA:
+					responderPedidoCliente(msg);
 					estado = ENTREGANDO_PRATO_CLIENTE;
 					break;
 				}
@@ -97,6 +99,7 @@ class ComportamentoGarcom extends Behaviour
 			break;
 			
 		case ENTREGANDO_PRATO_CLIENTE:
+			estado = ESPERANDO;
 			break;
 		}
 	}
@@ -116,7 +119,7 @@ class ComportamentoGarcom extends Behaviour
 	}
 	
 	private void colocarPedidoNaCozinha(Pedido p) {
-		// TODO Cozinha
+		Cozinha.colocarPedido(p);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.UnreadableException;
 import restaurante.Const;
 import restaurante.cardapio.Cardapio;
 import restaurante.cardapio.Pedido;
@@ -60,7 +61,17 @@ public class FazerPedido extends Behaviour
 			
 			if(pedido != null)
 			{
+				Cliente c = (Cliente) myAgent;
 				
+				Pedido p = null;
+				
+				try {
+					p = (Pedido) pedido.getContentObject();
+				} catch (UnreadableException e) {
+					e.printStackTrace();
+				}
+				
+				c.getComportamentos().addSubBehaviour(new Comer(myAgent, p.getItem()));
 			}
 			else
 				block();

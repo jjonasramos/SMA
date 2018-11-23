@@ -9,6 +9,8 @@ public class Cozinheiro extends Funcionario
 	protected void setup()
 	{
 		super.setup();
+		
+		addBehaviour(new PrepararComida(this));
 	}
 	
 	@Override

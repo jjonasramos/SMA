@@ -79,7 +79,6 @@ class ChamarGarcom extends TickerBehaviour
 		if(garcom == null)
 			return false;
 		
-		// envia sua identificacao para todos os vendedores
 		ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
 		
 		cfp.addReceiver(garcom);
