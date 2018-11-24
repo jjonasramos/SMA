@@ -36,10 +36,10 @@ public class Main
 	
 	private static void criarAgentes() throws StaleProxyException
 	{
-		AgentController leticia    = criarEIniciarAgente("Leticia"         , Cliente.class.getName());
-		AgentController garcom     = criarEIniciarAgente("Walter"          , Garcom.class.getName());
-		AgentController cozinheiro = criarEIniciarAgente("Patricia"        , Cozinheiro.class.getName());
-		AgentController caixa      = criarEIniciarAgente("Cristiano he-man", Caixa.class.getName());
+		AgentController leticia    = criarEIniciarAgente("Fulano"  , Cliente.class.getName());
+		AgentController garcom     = criarEIniciarAgente("Ciclano" , Garcom.class.getName());
+		AgentController cozinheiro = criarEIniciarAgente("Beltrano", Cozinheiro.class.getName());
+		AgentController caixa      = criarEIniciarAgente("Mulano"  , Caixa.class.getName());
 	}
 	
 	private static AgentController criarEIniciarAgente(String name, String pkg) throws StaleProxyException
