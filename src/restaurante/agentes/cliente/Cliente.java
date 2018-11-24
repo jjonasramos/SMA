@@ -8,6 +8,8 @@ import jade.domain.FIPAException;
 public class Cliente extends Agent
 {
 	private SequentialBehaviour comportamentos;
+	private double valorAPagar = 10.0;
+	
 	@Override
 	protected void setup()
 	{
@@ -42,5 +44,13 @@ public class Cliente extends Agent
 
 	public void setComportamentos(SequentialBehaviour comportamentos) {
 		this.comportamentos = comportamentos;
+	}
+
+	public double getValorAPagar() {
+		return valorAPagar;
+	}
+
+	public void setValorAPagar(double valorAPagar) {
+		this.valorAPagar = valorAPagar;
 	}
 }

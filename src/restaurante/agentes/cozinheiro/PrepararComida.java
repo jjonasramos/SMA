@@ -53,6 +53,8 @@ class PrepararComida extends TickerBehaviour
 				e.printStackTrace();
 			}
 		}
+		else
+			block();
 	}
 
 	private void chamarGarcons(Pedido p) throws IOException 

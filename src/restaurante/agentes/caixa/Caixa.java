@@ -9,11 +9,12 @@ public class Caixa extends Funcionario
 	protected void setup()
 	{
 		super.setup();
+		
+		addBehaviour(new ReceberPagamento(this));
 	}
 	
 	@Override
-	protected void takeDown() 
-	{
+	protected void takeDown() {
 		super.takeDown();
 	}
 }

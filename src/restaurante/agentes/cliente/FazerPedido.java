@@ -13,6 +13,7 @@ import restaurante.cardapio.Pedido;
 
 public class FazerPedido extends Behaviour 
 {
+	private Cliente cliente;
 	private AID garcom;
 	
 	private Pedido pedido;
@@ -27,7 +28,8 @@ public class FazerPedido extends Behaviour
 	{
 		super(a);
 		
-		this.garcom = garcom;
+		this.cliente = (Cliente) a;
+		this.garcom  = garcom;
 		
 		pedido = new Pedido(a.getAID(), Cardapio.selecionarItem());
 		System.out.println();
@@ -73,6 +75,8 @@ public class FazerPedido extends Behaviour
 				}
 				
 				c.getComportamentos().addSubBehaviour(new Comer(myAgent, p.getItem()));
+				
+				c.setValorAPagar(p.getItem().getPreco());
 				
 				estado = RECEBEU_PEDIDO;
 			}

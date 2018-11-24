@@ -20,7 +20,7 @@ class Comer extends WakerBehaviour
 	
 	protected void onWake() 
 	{
-        System.out.println(myAgent.getLocalName() + ": terminei de comer " + comida.getNome() + "!");
+        System.out.println(myAgent.getLocalName() + ": terminei de comer " + comida.getNome() + "!\n");
         
         cliente.getComportamentos().addSubBehaviour(new PagarNoCaixa(cliente));
     }
